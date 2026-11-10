@@ -1,0 +1,23 @@
+# ビルドの出力・配布物（GitHub の Releases に載せる）
+dist/
+release/
+build/
+*.spec
+
+# AI モデル（tools/export_yolo11.py で作る。AGPL のモデルから変換したファイルなので入れない）
+photocull/models/yolo11s-seg.onnx
+*.pt
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+export_venv/
+
+# 個人の環境・ログ
+*.log
+.claude/
+.vscode/
+.idea/
+Thumbs.db

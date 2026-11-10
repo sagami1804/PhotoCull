@@ -1,0 +1,67 @@
+失敗写真チェッカー（PhotoCull） v1.0 で使っている部品とライセンス
+=================================================================
+
+PhotoCull.exe には、次の部品が含まれています。各ライセンスの全文はこのフォルダにあります。
+
+
+■ このアプリ本体（PhotoCull）
+  ライセンス: GNU Affero General Public License v3.0（AGPL-3.0.txt）
+  ソースコード: ../source/PhotoCull_v1.0_source.zip
+
+
+■ AI モデル
+  YOLO11s-seg（物体検出・切り抜き）
+    Copyright (C) Ultralytics
+    ライセンス: AGPL-3.0（AGPL-3.0.txt）
+    入手先: https://github.com/ultralytics/ultralytics
+    ※ yolo11s-seg.pt を ONNX 形式に変換して使っています（変換方法はソースコードの tools/export_yolo11.py）
+
+  YuNet（顔検出） face_detection_yunet_2023mar.onnx
+    Copyright (C) Shiqi Yu ほか
+    ライセンス: MIT License
+    入手先: https://github.com/opencv/opencv_zoo/tree/main/models/face_detection_yunet
+
+  Haar Cascade（目の検出） haarcascade_eye_tree_eyeglasses.xml
+    OpenCV に同梱（Intel License Agreement。opencv_LICENSE-3RD-PARTY.txt を参照）
+
+
+■ ライブラリ
+  Python 3.14
+    Copyright (C) Python Software Foundation
+    ライセンス: PSF License Agreement（python_LICENSE.txt。同梱の OpenSSL などのライセンスも含む）
+
+  Qt 6 / PySide6 / Shiboken6 6.12
+    Copyright (C) The Qt Company Ltd.
+    ライセンス: GNU Lesser General Public License v3.0（LGPL-3.0.txt、GPL-3.0.txt）
+    ソースコード: https://code.qt.io/ （Qt）、https://code.qt.io/cgit/pyside/pyside-setup.git/ （PySide6）
+    ※ Qt のライブラリは変更せずにそのまま使っています。ソースコード（source フォルダ）と
+      build.bat から、別の版の Qt / PySide6 と組み合わせてビルドし直すことができます。
+
+  OpenCV 4.14（opencv-python-headless）
+    OpenCV 本体のライセンス: Apache License 2.0（opencv_LICENSE-3RD-PARTY.txt の先頭）
+    Python 用の部分（opencv-python）のライセンス: MIT License（opencv_LICENSE.txt）
+    同梱の部品のライセンス: opencv_LICENSE-3RD-PARTY.txt
+
+  ONNX Runtime 1.24（onnxruntime-directml）
+    Copyright (C) Microsoft Corporation
+    ライセンス: MIT License（onnxruntime_LICENSE.txt）
+    同梱の部品のライセンス: onnxruntime_ThirdPartyNotices.txt
+
+  DirectML（DirectML.dll。ONNX Runtime に同梱）
+    Copyright (C) Microsoft Corporation
+    ライセンス: Microsoft DirectML のライセンス（再配布可）
+    https://www.nuget.org/packages/Microsoft.AI.DirectML のライセンス条項を参照
+
+  NumPy 2.5
+    ライセンス: BSD 3-Clause License ほか（numpy_LICENSE.txt）
+
+  Pillow 13.0
+    ライセンス: MIT-CMU License（pillow_LICENSE.txt）
+
+  Microsoft Visual C++ ランタイム（vcruntime140.dll、msvcp140.dll など）
+    Copyright (C) Microsoft Corporation
+    Visual Studio の再頒布可能ファイルとして同梱
+
+
+■ exe の作成
+  PyInstaller 6（GPL-2.0 with Bootloader Exception。作成した exe には制限はかかりません）
