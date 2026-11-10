@@ -185,7 +185,7 @@ def load_image(path: str, max_side: int, fit: bool = True) -> Image.Image:
             orientation = src.getexif().get(0x0112, 1)
         except Exception:
             orientation = 1
-        if src.format in ("JPEG", "MPO"):   # MPO = Nikon などが使う、プレビュー画像入りの JPEG
+        if src.format in ("JPEG", "MPO"):   # MPO = 一部のカメラが使う、プレビュー画像入りの JPEG
             # JPEG は縮小デコードで大幅に高速化・省メモリ化できる
             # 縮小デコードは「縦横とも指定以上」になる倍率を選ぶので、写真の縦横比に合わせて指定する
             # （正方形で指定すると 3:2 の写真では短辺が足りず、毎回フルサイズで読んでしまう）
@@ -573,7 +573,7 @@ def _analyze_objects(m: Metrics, rgb: np.ndarray, gray: np.ndarray, lap: np.ndar
     persons = [o for o in objs if o.cls == people.PERSON]
 
     # 顔検出は 640px で行う。判定に使う大きさ（1024px で 50px 以上）の顔は 1024px と同じように見つかり、
-    # 処理は半分以下で済む（サーフィン写真などでの比較で見落としなし、目の位置のずれは 2048px 換算で約 3px）
+    # 処理は半分以下で済む（写真での比較で見落としなし、目の位置のずれは 2048px 換算で約 3px）
     face_src = rgb
     if max(rgb.shape[:2]) > FACE_DETECT_SIZE:
         k = FACE_DETECT_SIZE / max(rgb.shape[:2])
@@ -603,7 +603,7 @@ def _analyze_objects(m: Metrics, rgb: np.ndarray, gray: np.ndarray, lap: np.ndar
         cov = cv2.resize(o.mask[:ch * CELL, :cw * CELL].astype(np.float32), (cw, ch), interpolation=cv2.INTER_AREA)
         # ピンボケの判定は枠（すぐ周りを含む）で測る。黒いウェットスーツのように模様の少ない被写体は
         # 形の中だけだと細部が少なく、ピントが合っていても低く出る。すぐ周り（同じ距離にある水面など）を
-        # 含めると安定する（サーフィン写真 400 枚での比較で誤判定が最も少なかった）
+        # 含めると安定する（400 枚での比較で誤判定が最も少なかった）
         H, W = lap.shape
         x, y, w, h = o.px(W, H)
         box = np.zeros_like(cov, dtype=bool)
